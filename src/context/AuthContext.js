@@ -10,6 +10,7 @@ function AuthProvider({ children }) {
 
   const logOut = () => {
     setUser(null);
+    
   };
 
   return (

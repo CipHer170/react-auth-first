@@ -1,12 +1,11 @@
 import axios from "axios";
 import "./Forms.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 function Form() {
   const [userLogin, setUserLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
 
   const handleChangeLogin = (e) => {
     setUserLogin(e.target.value);
@@ -15,7 +14,7 @@ function Form() {
     setUserPassword(e.target.value);
   };
 
-  const URL = "https://todoapidrf.pythonanywhere.com/api/auth/login/";
+  // const URL = "https://todoapidrf.pythonanywhere.com/api/auth/login/";
   const data = {
     email: userLogin,
     password: userPassword,
@@ -27,13 +26,15 @@ function Form() {
     (async () => {
       try {
         await axios
-          .post(URL, {
+          .post("https://todoapidrf.pythonanywhere.com/api/auth/login/", {
             username: data.email,
             password: data.password,
           })
           .then((res) => {
             if (res.status === 200) {
-              navigate("/todo", { replace: true });
+              navigate("/todo");
+            } else {
+              alert("Wrong credentials");
             }
             return res.data.result;
           });
@@ -44,13 +45,9 @@ function Form() {
   return (
     <div className="login-form">
       <form className="onSubmitForm" onSubmit={handleSubmitForm}>
-        <label htmlFor="">
-          {passwordError ? "Error Enter new one" : "Enter Login"}
-        </label>
+        <label htmlFor="">Enter Login </label>
         <input type="text" value={userLogin} onChange={handleChangeLogin} />
-        <label htmlFor="">
-          {passwordError ? "Error Enter new one" : "Enter password"}
-        </label>
+        <label htmlFor="">Enter password</label>
         <input
           type="text"
           value={userPassword}

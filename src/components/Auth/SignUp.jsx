@@ -11,18 +11,28 @@ function SignUp() {
   const [userPassword, setUserPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
-  const URL = "https://todoapidrf.pythonanywhere.com/api/auth/register/";
+  // const URL = "https://todoapidrf.pythonanywhere.com/api/auth/register/";
   const handleSubmitForm = (event) => {
     event.preventDefault();
     (async () => {
       try {
-        await axios.post(URL, {
-          first_name: firstName,
-          last_name: lastName,
-          password: userPassword,
-          username: userLogin,
-        });
-      } catch (error) {}
+        // if (password === rePassword) {
+        //   setUserPassword(password);
+        await axios.post(
+          "https://todoapidrf.pythonanywhere.com/api/auth/register/",
+          {
+            first_name: firstName,
+            last_name: lastName,
+            username: userLogin,
+            password: userPassword,
+          }
+        );
+      } catch (error) {
+        // else {
+        //   setPasswordError(true);
+        // }
+        // }
+      }
     })();
   };
 
@@ -40,14 +50,8 @@ function SignUp() {
   const handleChangeNewPassword = (e) => {
     setPassword(e.target.value);
   };
-
-  const handleChangeNewRePassword = (e) => {
+  const handleChangeRePassword = (e) => {
     setRePassword(e.target.value);
-    // if (password === rePassword) {
-    //   setUserPassword(password);
-    // } else {
-    //   setPasswordError(true);
-    // }
   };
 
   return (
@@ -69,7 +73,7 @@ function SignUp() {
         <input
           type="text"
           value={rePassword}
-          onChange={handleChangeNewRePassword}
+          onChange={handleChangeRePassword}
         />
         <button type="submit">Sign Up</button>
       </form>
