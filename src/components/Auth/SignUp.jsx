@@ -12,7 +12,6 @@ function SignUp() {
   const [passwordError, setPasswordError] = useState(false);
 
   const URL = "https://todoapidrf.pythonanywhere.com/api/auth/register/";
-  const navigate = useNavigate();
   const handleSubmitForm = (event) => {
     event.preventDefault();
     (async () => {
@@ -44,11 +43,11 @@ function SignUp() {
 
   const handleChangeNewRePassword = (e) => {
     setRePassword(e.target.value);
-    if (password === rePassword) {
-      setUserPassword(password);
-    } else {
-      setPasswordError(true);
-    }
+    // if (password === rePassword) {
+    //   setUserPassword(password);
+    // } else {
+    //   setPasswordError(true);
+    // }
   };
 
   return (

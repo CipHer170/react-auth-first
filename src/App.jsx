@@ -7,13 +7,16 @@ import Layout from "./components/Layout";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import "./App.scss";
-import { useState } from "react";
+import { useAuth } from "./hooks/useContex";
 function App() {
-
-
+  const { user, logIn, logOut } = useAuth();
   return (
     <div className="list-route">
-   
+      {user ? (
+        <button onClick={logOut}>Sign out</button>
+      ) : (
+        <button onClick={logIn}>Sign In</button>
+      )}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<About />} />

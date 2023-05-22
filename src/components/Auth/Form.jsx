@@ -1,13 +1,12 @@
 import axios from "axios";
 import "./Forms.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 function Form() {
   const [userLogin, setUserLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
-  const [loginError, setLoginError] = useState(false);
 
   const handleChangeLogin = (e) => {
     setUserLogin(e.target.value);
