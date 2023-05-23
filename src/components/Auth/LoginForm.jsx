@@ -31,14 +31,19 @@ function Form() {
             password: data.password,
           })
           .then((res) => {
+            console.log(res);
             if (res.status === 200) {
-              navigate("/todo");
+              navigate("/todo", { replace: true });
+              localStorage.setItem("token", res.data.token);
             } else {
-              alert("Wrong credentials");
+              navigate("/private1", { replace: true });
             }
+            console.log(res.data.result);
             return res.data.result;
           });
-      } catch (error) {}
+      } catch (error) {
+        alert(error);
+      }
     })();
   };
 
@@ -61,14 +66,3 @@ function Form() {
 }
 
 export default Form;
-
-// if (userPassword.length >= 8 && userLogin.length >= 10) {
-//   setUserPassword(e.target.value);
-//   setPasswordError(false);
-// } else {
-//   setPasswordError(true);
-// }
-
-// const strongRegex = new RegExp(
-//   "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-// );

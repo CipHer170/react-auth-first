@@ -10,7 +10,11 @@ function Todo() {
 
   // base jsx
 
-  return <div className="todo">Profile user</div>;
+  return (
+    <div className="todo">
+      <h1>Profile user</h1>
+    </div>
+  );
 }
 
 export default Todo;

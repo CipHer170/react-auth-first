@@ -13,12 +13,13 @@ function Layout() {
         <NavLink to="/private1">Private 1</NavLink>
         <NavLink to="/private2">Private 2</NavLink>
         <NavLink to="/private3">Private 3</NavLink>
+        <NavLink to="/table">Table</NavLink>
         {user ? (
-          // <button onClick={logOut}>Sign out</button>
           <NavLink to="/" onClick={logOut}>
             Log Out
           </NavLink>
         ) : (
+          // <button onClick={logOut}>Sign out</button>
           // <button onClick={logIn}>Sign In</button>
           <NavLink to="/login" onClick={logIn}>
             Log In
